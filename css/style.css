@@ -1,10 +1,21 @@
 body {
-    background-color: rgb(55, 168, 238);
+    background-color: rgb(164, 201, 225);
 }
 
 h1 {
     color: rgb(14, 14, 80);
     font-size: 100px;
+}
+
+h2{
+    color: rgb(14, 14, 80);
+    font-size:40px;
+    text-align: center;
+}
+
+form{
+    color: rgb(14, 14, 80);
+    font-size:20px;
 }
 
 .banner {
