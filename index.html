@@ -67,11 +67,11 @@
                     <label for="departments">Department</label>
                     <select name="" id="departments">
                         <option value="">Select Department</option>
-                        <option value="ENG">Product & Engineering</option>
-                        <option value="SM">Sales & Marketing</option>
-                        <option value="ACC">Finance & Accounting</option>
-                        <option value="HR">Operations & HR</option>
-                        <option value="LGL">Legal, Security & Compliance</option>
+                        <option value="Product & Engineering">Product & Engineering</option>
+                        <option value="Sales & Marketing">Sales & Marketing</option>
+                        <option value="Finance & Accounting">Finance & Accounting</option>
+                        <option value="Operations & HR">Operations & HR</option>
+                        <option value="Legal, Security & Compliance">Legal, Security & Compliance</option>
                     </select>
                 </div>
             </div>
@@ -90,10 +90,10 @@
                     <label for="types">Employee Type</label>
                     <select name="" id="types">
                         <option value="">Select Type</option>
-                        <option value="ENG">Trainee/Intern</option>
-                        <option value="ENG">Contract</option>
-                        <option value="SM">Part-Time </option>
-                        <option value="ACC">Full-Time</option>
+                        <option value="Trainee/Intern">Trainee/Intern</option>
+                        <option value="Contract">Contract</option>
+                        <option value="Part-Time">Part-Time</option>
+                        <option value="Full-Time">Full-Time</option>
                     </select>
                 </div>
 
@@ -110,9 +110,32 @@
                     Employee</button>
             </div>
 
+            <div id="successBanner"></div>
+
         </form>
 
     </div>
+
+    <h2>Employee Details</h2>
+
+    <table border="2" width="100%" style="color: rgb(9, 9, 75); background-color: rgb(207, 223, 238);">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>Gender</th>
+                <th>Department</th>
+                <th>Designation</th>
+                <th>Type</th>
+                <th>Salary</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody id="employeeTableBody">
+
+        </tbody>
+    </table>
 
     <script src="js/app.js"></script>
 </body>

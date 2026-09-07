@@ -143,3 +143,68 @@ button:hover {
     font-size:20px;
     font-weight:bold;
 }
+
+table{
+    width:2500px;
+    align-items: center;
+    border-collapse:collapse;
+    background:white;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+th{
+    background-color:navy;
+    color:white;
+    padding:15px;
+    text-align:center;
+    vertical-align:middle;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+td{
+    font-size: 22px;
+    padding:15px;
+    text-align: center;
+    padding: 15px;
+    vertical-align:middle;
+}
+
+tr:nth-child(even){
+    background-color:#f2f2f2;
+}
+
+tr:hover{
+    background-color:#dceeff;
+}
+.edit-btn{
+    background:#0d6efd;
+    color:white;
+    border:none;
+    border-radius:5px;
+    padding:8px 15px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.delete-btn{
+    background:#dc3545;
+    color:white;
+    border:none;
+    border-radius:5px;
+    padding:8px 15px;
+    cursor:pointer;
+    font-size:16px;
+}
+.actions{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+}
+
+th:last-child,
+td:last-child{
+    width: 340px;
+    text-align: center;
+}

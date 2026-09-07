@@ -1,9 +1,11 @@
+let employees = [];
+
 let department = document.getElementById("departments");
 let designation = document.getElementById("designations");
 
 department.onchange = function () {
 
-    if (department.value == "ENG") {
+    if (department.value == "Product & Engineering") {
         designation.innerHTML = `
             <option>Select Designation</option>
             <option>Full-Stack Developer</option>
@@ -15,7 +17,7 @@ department.onchange = function () {
             `;
     }
 
-    if (department.value == "SM") {
+    if (department.value == "Sales & Marketing") {
         designation.innerHTML = `
             <option>Select Designation</option>
             <option>Digital Marketing Executive</option>
@@ -25,7 +27,7 @@ department.onchange = function () {
             `;
     }
 
-    if (department.value == "ACC") {
+    if (department.value == "Finance & Accounting") {
         designation.innerHTML = `
             <option>Select Designation</option>
             <option>Accounts Clerk</option>
@@ -37,7 +39,7 @@ department.onchange = function () {
             `;
     }
 
-    if (department.value == "HR") {
+    if (department.value == "Operations & HR") {
         designation.innerHTML = `
             <option>Select Designation</option>
             <option>HR Executive</option>
@@ -48,7 +50,7 @@ department.onchange = function () {
             `;
     }
 
-    if (department.value == "LGL") {
+    if (department.value == "Legal, Security & Compliance") {
         designation.innerHTML = `
             <option>Select Designation</option>
             <option>Legal Assistant</option>
@@ -89,16 +91,27 @@ function saveEmployee() {
 
     let phone = document.getElementById("TP").value;
 
-    if (phone.length !== 10) {
+    if (phone.length < 10) {
 
-        banner.innerHTML = "Phone number must contain exactly 10 digits!";
-        banner.style.color = "red";
+        banner.innerHTML = "Phone number cannot be less than 10 digits";
         banner.style.display = "block";
+        banner.style.color = "red";
+        return;
+    }
 
-        setTimeout(() => {
-            banner.style.display = "none";
-        }, 1500);
+    if (phone.length > 10) {
 
+        banner.innerHTML = "Phone number cannot exceed 10 digits";
+        banner.style.display = "block";
+        banner.style.color = "red";
+        return;
+    }
+
+    if (!phone.startsWith("07")) {
+
+        banner.innerHTML = "Phone number must start with 07";
+        banner.style.display = "block";
+        banner.style.color = "red";
         return;
     }
 
@@ -115,14 +128,17 @@ function saveEmployee() {
     }
 
     console.log(employee);
+    employees.push(employee);
+
+    displayEmployees();
 
     banner.innerHTML = "Saved Successfully!";
-        banner.style.color = "green";
-        banner.style.display = "block";
+    banner.style.color = "green";
+    banner.style.display = "block";
 
-        setTimeout(() => {
-            banner.style.display = "none";
-        }, 1500);
+    setTimeout(() => {
+        banner.style.display = "none";
+    }, 1500);
 
     document.getElementById("empName").value = "";
     document.getElementById("email").value = "";
@@ -144,4 +160,46 @@ function saveEmployee() {
     }, 1500);
 
 }
+
+function displayEmployees() {
+
+    let tableBody =
+        document.getElementById("employeeTableBody");
+
+    tableBody.innerHTML = "";
+
+    employees.forEach((emp, index) => {
+
+        tableBody.innerHTML += `
+        <tr>
+
+            <td>${emp.empName}</td>
+
+            <td>
+                ${emp.email}<br>
+                ${emp.TP}
+            </td>
+
+            <td>${emp.gender}</td>
+
+            <td>${emp.departments}</td>
+
+            <td>${emp.designations}</td>
+
+            <td>${emp.types}</td>
+
+            <td>${emp.salary}</td>
+
+            <td>
+                <button>Edit</button>
+                <button>Delete</button>
+            </td>
+
+        </tr>
+        `;
+    });
+}
+
+
+
 
