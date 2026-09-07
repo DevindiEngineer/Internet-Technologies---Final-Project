@@ -182,6 +182,8 @@ function displayEmployees() {
 
             <td>${emp.gender}</td>
 
+            <td>${emp.DOJ}</td>
+
             <td>${emp.departments}</td>
 
             <td>${emp.designations}</td>
