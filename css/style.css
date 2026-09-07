@@ -152,12 +152,13 @@ table {
     border-radius: 10px;
     overflow: hidden;
     margin: auto;
-    table-layout: fixed;
+    table-layout: auto;
 }
 
-.table-container {
-    width: 90%;
-    margin: 0 auto;
+.table-container{
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 th {
@@ -224,50 +225,4 @@ tr:hover {
     display: flex;
     justify-content: center;
     gap: 10px;
-}
-
-th:last-child,
-td:last-child {
-    width: 150px;
-    text-align: center;
-}
-
-th:nth-child(1),
-td:nth-child(1){
-    width: 12%;
-}
-
-th:nth-child(2),
-td:nth-child(2){
-    width: 18%;
-}
-
-th:nth-child(3),
-td:nth-child(3){
-    width: 7%;
-}
-
-th:nth-child(4),
-td:nth-child(4){
-    width: 7%;
-}
-
-th:nth-child(5),
-td:nth-child(5){
-    width: 9%;
-}
-
-th:nth-child(6),
-td:nth-child(6){
-    width: 9%;
-}
-
-th:nth-child(7),
-td:nth-child(7){
-    width: 10%;
-}
-
-th:nth-child(8),
-td:nth-child(8){
-    width: 8%;
 }
