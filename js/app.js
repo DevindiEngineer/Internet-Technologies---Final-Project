@@ -190,9 +190,9 @@ function displayEmployees() {
 
             <td>${emp.salary}</td>
 
-            <td>
-                <button>Edit</button>
-                <button>Delete</button>
+            <td class="action-cell">
+                    <button class="edit-btn">Edit</button>
+                    <button class="delete-btn">Delete</button>
             </td>
 
         </tr>
