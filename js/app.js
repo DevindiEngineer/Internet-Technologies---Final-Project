@@ -1,6 +1,8 @@
 let department = document.getElementById("departments");
 let designation = document.getElementById("designations");
 
+let editingIndex = null;
+
 department.onchange = function () {
 
     if (department.value == "Product & Engineering") {
@@ -62,7 +64,10 @@ department.onchange = function () {
 
 function saveEmployee() {
 
+    console.log("Current editing index:", editingIndex);
+
     let banner = document.getElementById("successBanner");
+
 
     if (
         document.getElementById("empName").value.trim() === "" ||
@@ -129,14 +134,29 @@ function saveEmployee() {
     let employees =
         JSON.parse(localStorage.getItem("employees")) || [];
 
-    employees.push(employee);
 
-    localStorage.setItem(
-        "employees",
-        JSON.stringify(employees)
-    );
+    console.log("Saving. editingIndex =", editingIndex);
 
-    banner.innerHTML = "Saved Successfully!";
+    if (editingIndex == null) {
+
+        // Add a new employee
+        employees.push(employee);
+
+        banner.innerHTML = "Saved Successfully!";
+
+    } else {
+
+        // Update the selected employee
+        employees[editingIndex] = employee;
+
+        banner.innerHTML = "Updated Successfully!";
+
+        editingIndex = null;
+
+        document.getElementById("saveButton").innerText =
+            "Save Employee";
+    }
+
     banner.style.color = "green";
     banner.style.display = "block";
 
@@ -156,12 +176,6 @@ function saveEmployee() {
     document.getElementById("salary").value = "";
 
     banner.style.display = "block";
-
-    setTimeout(function () {
-
-        banner.style.display = "none";
-
-    }, 1500);
 
     localStorage.setItem(
         "employees",
@@ -230,7 +244,10 @@ function displayEmployees() {
             <td>${emp.salary}</td>
 
             <td class="action-cell">
-                <button class="edit-btn">
+                
+                <button
+                    class="edit-btn"
+                    onclick="editEmployee(${index})">
                     Edit
                 </button>
 
@@ -280,7 +297,6 @@ function updateDashboard() {
     document.getElementById("contractEmployees").innerHTML =
         contractCount;
 
-
     let traineeCount =
         employees.filter(emp =>
             emp.types === "Trainee/Intern"
@@ -326,4 +342,54 @@ function deleteEmployee(index) {
         displayEmployees();
         updateDashboard();   // ← add this
     }
+}
+
+function editEmployee(index) {
+
+    let employees =
+        JSON.parse(localStorage.getItem("employees")) || [];
+
+    let employee = employees[index];
+
+    editingIndex = Number(index);
+
+    console.log("Edit clicked:", editingIndex);
+
+    document.getElementById("empName").value =
+        employee.empName;
+
+    document.getElementById("email").value =
+        employee.email;
+
+    document.getElementById("TP").value =
+        employee.TP;
+
+    document.getElementById("gender").value =
+        employee.gender;
+
+    document.getElementById("DOJ").value =
+        employee.DOJ;
+
+    document.getElementById("departments").value =
+        employee.departments;
+
+    // Load the correct designations for that department
+    department.onchange();
+
+    document.getElementById("designations").value =
+        employee.designations;
+
+    document.getElementById("types").value =
+        employee.types;
+
+    document.getElementById("salary").value =
+        employee.salary;
+
+    document.getElementById("saveButton").innerText =
+        "Update Employee";
+
+    // Move to the form
+    document.querySelector("form").scrollIntoView({
+        behavior: "smooth"
+    });
 }
