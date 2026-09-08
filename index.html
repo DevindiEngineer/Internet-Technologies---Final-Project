@@ -23,6 +23,12 @@
     <div>
         <h2>Employee Details Form</h2>
 
+        <div style="text-align:center;">
+            <button type="button" style="color: rgb(225, 225, 235); background-color: rgb(167, 23, 23);"
+                onclick="resetForm()" id="reset-btn">Reset Data
+            </button>
+        </div>
+
         <form>
 
             <!-- first raw-->
@@ -106,7 +112,7 @@
             <div style="text-align:center;">
                 <button type="button" style="color: rgb(225, 225, 235); background-color: rgb(9, 9, 75);"
                     onclick="saveEmployee()" id="saveButton">Save
-                Employee</button>
+                    Employee</button>
             </div>
 
             <div id="successBanner"></div>
@@ -148,6 +154,54 @@
             <h3 id="averageSalary">0</h3>
             <p>Average Salary</p>
         </div>
+
+    </div>
+
+    <div class="filter-panel">
+
+        <div class="filter-field">
+            <label>Search Employee</label>
+
+            <input type="text" id="searchEmployee" placeholder="Search by name or email" oninput="applyFilters()">
+        </div>
+
+        <div class="filter-field">
+            <label>Department</label>
+
+            <select id="filterDepartment" onchange="applyFilters()">
+                <option value="">All Departments</option>
+                <option value="Product & Engineering">
+                    Product & Engineering
+                </option>
+                <option value="Sales & Marketing">
+                    Sales & Marketing
+                </option>
+                <option value="Finance & Accounting">
+                    Finance & Accounting
+                </option>
+                <option value="Operations & HR">
+                    Operations & HR
+                </option>
+                <option value="Legal, Security & Compliance">
+                    Legal, Security & Compliance
+                </option>
+            </select>
+        </div>
+
+        <div class="filter-field">
+            <label>Employee Type</label>
+
+            <select id="filterType" onchange="applyFilters()">
+                <option value="">All Employee Types</option>
+                <option value="Permanent">Permanent</option>
+                <option value="Contract">Contract</option>
+                <option value="Trainee/Intern">Trainee/Intern</option>
+            </select>
+        </div>
+
+        <button type="button" class="clear-filter-btn" onclick="clearFilters()">
+            Clear Filters
+        </button>
 
     </div>
 

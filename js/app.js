@@ -188,19 +188,45 @@ function saveEmployee() {
 
 }
 
-function displayEmployees() {
+function displayEmployees(employeesToDisplay = null) {
 
-    let employees =
+    let allEmployees =
         JSON.parse(localStorage.getItem("employees")) || [];
 
-    console.log(employees);
+    let employees;
+
+    if (employeesToDisplay === null) {
+        employees = allEmployees.map((employee, index) => {
+            return {
+                employee: employee,
+                originalIndex: index
+            };
+        });
+    } else {
+        employees = employeesToDisplay;
+    }
 
     let tableBody =
         document.getElementById("employeeTableBody");
 
     tableBody.innerHTML = "";
 
-    employees.forEach((emp, index) => {
+    if (employees.length === 0) {
+        tableBody.innerHTML = `
+            <tr>
+                <td colspan="9" class="no-results">
+                    No matching employees found
+                </td>
+            </tr>
+        `;
+
+        return;
+    }
+
+    employees.forEach(function (item) {
+
+        let emp = item.employee;
+        let index = item.originalIndex;
 
         let rowClass = "";
 
@@ -216,53 +242,60 @@ function displayEmployees() {
         else if (emp.departments === "Operations & HR") {
             rowClass = "hr-row";
         }
-        else if (emp.departments === "Legal, Security & Compliance") {
+        else if (
+            emp.departments ===
+            "Legal, Security & Compliance"
+        ) {
             rowClass = "legal-row";
         }
 
         tableBody.innerHTML += `
-        <tr>
-            <td>${emp.empName}</td>
+            <tr>
+                <td>${emp.empName}</td>
 
-            <td>
-                ${emp.email}<br>
-                ${emp.TP}
-            </td>
+                <td>
+                    ${emp.email}<br>
+                    ${emp.TP}
+                </td>
 
-            <td>${emp.gender}</td>
+                <td>${emp.gender}</td>
 
-            <td>${emp.DOJ}</td>
+                <td>${emp.DOJ}</td>
 
-            <td class="department-cell ${rowClass}">
-                ${emp.departments}
-            </td>
+                <td class="department-cell ${rowClass}">
+                    ${emp.departments}
+                </td>
 
-            <td>${emp.designations}</td>
+                <td>${emp.designations}</td>
 
-            <td>${emp.types}</td>
+                <td>${emp.types}</td>
 
-            <td>${emp.salary}</td>
+                <td>Rs. ${Number(emp.salary).toLocaleString()}</td>
 
-            <td class="action-cell">
-                
-                <button
-                    class="edit-btn"
-                    onclick="editEmployee(${index})">
-                    Edit
-                </button>
+                <td class="action-cell">
 
-                <button
-                    class="delete-btn"
-                    onclick="deleteEmployee(${index})">
-                    Delete
-                </button>
-            </td>
+                    <button
+                        type="button"
+                        class="edit-btn"
+                        onclick="editEmployee(${index})"
+                    >
+                        Edit
+                    </button>
 
-        </tr>
+                    <button
+                        type="button"
+                        class="delete-btn"
+                        onclick="deleteEmployee(${index})"
+                    >
+                        Delete
+                    </button>
+
+                </td>
+            </tr>
         `;
     });
-
 }
+
 
 displayEmployees();
 updateDashboard();
@@ -392,4 +425,91 @@ function editEmployee(index) {
     document.querySelector("form").scrollIntoView({
         behavior: "smooth"
     });
+}
+
+function resetForm() {
+
+    document.getElementById("empName").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("TP").value = "";
+    document.getElementById("gender").value = "";
+    document.getElementById("DOJ").value = "";
+    document.getElementById("departments").value = "";
+    document.getElementById("designations").innerHTML =
+        '<option value="">Select Designation</option>';
+
+    document.getElementById("types").value = "";
+    document.getElementById("salary").value = "";
+
+    editingIndex = null;
+
+    document.getElementById("saveButton").innerText =
+        "Save Employee";
+}
+
+function applyFilters() {
+
+    let employees =
+        JSON.parse(localStorage.getItem("employees")) || [];
+
+    let searchText =
+        document.getElementById("searchEmployee")
+            .value
+            .trim()
+            .toLowerCase();
+
+    let selectedDepartment =
+        document.getElementById("filterDepartment").value;
+
+    let selectedType =
+        document.getElementById("filterType").value;
+
+    let filteredEmployees = employees
+        .map(function (employee, index) {
+            return {
+                employee: employee,
+                originalIndex: index
+            };
+        })
+        .filter(function (item) {
+
+            let emp = item.employee;
+
+            let employeeName =
+                emp.empName.toLowerCase();
+
+            let employeeEmail =
+                emp.email.toLowerCase();
+
+            let matchesSearch =
+                employeeName.includes(searchText) ||
+                employeeEmail.includes(searchText);
+
+            let matchesDepartment =
+                selectedDepartment === "" ||
+                emp.departments === selectedDepartment;
+
+            let matchesType =
+                selectedType === "" ||
+                emp.types === selectedType;
+
+            return (
+                matchesSearch &&
+                matchesDepartment &&
+                matchesType
+            );
+        });
+
+    displayEmployees(filteredEmployees);
+}
+
+function clearFilters() {
+
+    document.getElementById("searchEmployee").value = "";
+
+    document.getElementById("filterDepartment").value = "";
+
+    document.getElementById("filterType").value = "";
+
+    displayEmployees();
 }
