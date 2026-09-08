@@ -122,6 +122,130 @@ let dummyEmployees = [
 
 ];
 
+dummyEmployees.push(
+
+{
+    empName: "Kevin De Silva",
+    email: "kevin@gmail.com",
+    TP: "0772233445",
+    gender: "Male",
+    DOJ: "2024-04-10",
+    departments: "Product & Engineering",
+    designations: "Backend Engineer",
+    types: "Permanent",
+    salary: "240000"
+},
+
+{
+    empName: "Shanika Perera",
+    email: "shanika@gmail.com",
+    TP: "0773344556",
+    gender: "Female",
+    DOJ: "2025-05-12",
+    departments: "Product & Engineering",
+    designations: "QA (Quality Assurance) Engineer",
+    types: "Contract",
+    salary: "165000"
+},
+
+{
+    empName: "Dinesh Raj",
+    email: "dinesh@gmail.com",
+    TP: "0774455667",
+    gender: "Male",
+    DOJ: "2023-07-25",
+    departments: "Product & Engineering",
+    designations: "AI/ML Engineer",
+    types: "Permanent",
+    salary: "310000"
+},
+
+{
+    empName: "Yasara Fernando",
+    email: "yasara@gmail.com",
+    TP: "0775566778",
+    gender: "Female",
+    DOJ: "2024-01-15",
+    departments: "Sales & Marketing",
+    designations: "Content & SEO Specialist",
+    types: "Permanent",
+    salary: "170000"
+},
+
+{
+    empName: "Ravindu Silva",
+    email: "ravindu@gmail.com",
+    TP: "0776677889",
+    gender: "Male",
+    DOJ: "2022-10-14",
+    departments: "Sales & Marketing",
+    designations: "Direct Sales Manager",
+    types: "Permanent",
+    salary: "210000"
+},
+
+{
+    empName: "Nadeesha Wijeratne",
+    email: "nadeesha@gmail.com",
+    TP: "0777788990",
+    gender: "Female",
+    DOJ: "2023-06-06",
+    departments: "Finance & Accounting",
+    designations: "Accounts Executive",
+    types: "Permanent",
+    salary: "190000"
+},
+
+{
+    empName: "Pramuditha Jayasuriya",
+    email: "pramuditha@gmail.com",
+    TP: "0778899001",
+    gender: "Male",
+    DOJ: "2025-03-21",
+    departments: "Operations & HR",
+    designations: "Project/Opeartions Executive",
+    types: "Contract",
+    salary: "145000"
+},
+
+{
+    empName: "Anuki Senanayake",
+    email: "anuki@gmail.com",
+    TP: "0779900112",
+    gender: "Female",
+    DOJ: "2024-09-09",
+    departments: "Operations & HR",
+    designations: "HR Specialist",
+    types: "Permanent",
+    salary: "175000"
+},
+
+{
+    empName: "Isuru Madusanka",
+    email: "isuru@gmail.com",
+    TP: "0771010101",
+    gender: "Male",
+    DOJ: "2023-05-17",
+    departments: "Legal, Security & Compliance",
+    designations: "Legal/Compliance Specialist",
+    types: "Permanent",
+    salary: "230000"
+},
+
+{
+    empName: "Madhavi Perera",
+    email: "madhavi@gmail.com",
+    TP: "0772020202",
+    gender: "Female",
+    DOJ: "2025-02-20",
+    departments: "Product & Engineering",
+    designations: "Frontend Engineer",
+    types: "Trainee/Intern",
+    salary: "95000"
+}
+
+);
+
 localStorage.setItem(
     "employees",
     JSON.stringify(dummyEmployees)
