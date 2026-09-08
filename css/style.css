@@ -1,5 +1,6 @@
 body {
     background-color: rgb(164, 201, 225);
+    padding-bottom: 80px;
 }
 
 /* Headings */
@@ -155,7 +156,7 @@ table {
     table-layout: auto;
 }
 
-.table-container{
+.table-container {
     width: 100%;
     padding: 0 20px;
     box-sizing: border-box;
@@ -225,4 +226,61 @@ tr:hover {
     display: flex;
     justify-content: center;
     gap: 10px;
+}
+
+.department-cell {
+    font-weight: bold;
+    border-radius: 6px;
+}
+
+/* Department colors */
+
+.eng-row {
+    background-color: #b8abe9;
+}
+
+.sales-row {
+    background-color: #94df9a;
+}
+
+.finance-row {
+    background-color: #e0c859;
+}
+
+.hr-row {
+    background-color: #ebb5d9;
+}
+
+.legal-row {
+    background-color: #ec8484;
+}
+
+.dashboard{
+    width:90%;
+    margin:30px auto;
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.card{
+    flex:1;
+    background:rgb(8, 6, 77);
+    padding:10px;
+    border-radius:12px;
+    text-align:center;
+    box-shadow:0 0 10px rgba(0,0,0,0.15);
+}
+
+.card h3{
+    font-size:35px;
+    color:rgb(228, 219, 219);
+    margin:0;
+}
+
+.card p{
+    font-size:25px;
+    font-weight:bold;
+    margin-top:10px;
+    color: #dceeff;
 }

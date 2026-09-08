@@ -1,5 +1,3 @@
-let employees = [];
-
 let department = document.getElementById("departments");
 let designation = document.getElementById("designations");
 
@@ -128,9 +126,15 @@ function saveEmployee() {
     }
 
     console.log(employee);
+    let employees =
+        JSON.parse(localStorage.getItem("employees")) || [];
+
     employees.push(employee);
 
-    displayEmployees();
+    localStorage.setItem(
+        "employees",
+        JSON.stringify(employees)
+    );
 
     banner.innerHTML = "Saved Successfully!";
     banner.style.color = "green";
@@ -159,9 +163,23 @@ function saveEmployee() {
 
     }, 1500);
 
+    localStorage.setItem(
+        "employees",
+        JSON.stringify(employees)
+
+    );
+
+    displayEmployees();
+    updateDashboard();
+
 }
 
 function displayEmployees() {
+
+    let employees =
+        JSON.parse(localStorage.getItem("employees")) || [];
+
+    console.log(employees);
 
     let tableBody =
         document.getElementById("employeeTableBody");
@@ -170,9 +188,26 @@ function displayEmployees() {
 
     employees.forEach((emp, index) => {
 
+        let rowClass = "";
+
+        if (emp.departments === "Product & Engineering") {
+            rowClass = "eng-row";
+        }
+        else if (emp.departments === "Sales & Marketing") {
+            rowClass = "sales-row";
+        }
+        else if (emp.departments === "Finance & Accounting") {
+            rowClass = "finance-row";
+        }
+        else if (emp.departments === "Operations & HR") {
+            rowClass = "hr-row";
+        }
+        else if (emp.departments === "Legal, Security & Compliance") {
+            rowClass = "legal-row";
+        }
+
         tableBody.innerHTML += `
         <tr>
-
             <td>${emp.empName}</td>
 
             <td>
@@ -184,7 +219,9 @@ function displayEmployees() {
 
             <td>${emp.DOJ}</td>
 
-            <td>${emp.departments}</td>
+            <td class="department-cell ${rowClass}">
+                ${emp.departments}
+            </td>
 
             <td>${emp.designations}</td>
 
@@ -193,15 +230,100 @@ function displayEmployees() {
             <td>${emp.salary}</td>
 
             <td class="action-cell">
-                    <button class="edit-btn">Edit</button>
-                    <button class="delete-btn">Delete</button>
+                <button class="edit-btn">
+                    Edit
+                </button>
+
+                <button
+                    class="delete-btn"
+                    onclick="deleteEmployee(${index})">
+                    Delete
+                </button>
             </td>
 
         </tr>
         `;
     });
+
 }
 
+displayEmployees();
+updateDashboard();
+
+function updateDashboard() {
+
+    let employees =
+        JSON.parse(localStorage.getItem("employees")) || [];
+
+    document.getElementById("totalEmployees").innerHTML =
+        employees.length;
+
+    let departments =
+        [...new Set(employees.map(emp => emp.departments))];
+
+    document.getElementById("totalDepartments").innerHTML =
+        departments.length;
+
+    let permanentCount =
+        employees.filter(emp =>
+            emp.types === "Permanent"
+        ).length;
+
+    document.getElementById("permanentEmployees").innerHTML =
+        permanentCount;
+
+    let contractCount =
+        employees.filter(emp =>
+            emp.types === "Contract"
+        ).length;
+
+    document.getElementById("contractEmployees").innerHTML =
+        contractCount;
 
 
+    let traineeCount =
+        employees.filter(emp =>
+            emp.types === "Trainee/Intern"
+        ).length;
 
+    document.getElementById("traineeEmployees").innerHTML =
+        traineeCount;
+
+    let totalSalary =
+        employees.reduce(
+            (sum, emp) =>
+                sum + Number(emp.salary),
+            0
+        );
+
+    let averageSalary =
+        employees.length > 0
+            ? Math.round(totalSalary / employees.length)
+            : 0;
+
+    document.getElementById("averageSalary").innerHTML =
+        "Rs. " + averageSalary.toLocaleString();
+}
+
+function deleteEmployee(index) {
+
+    let answer = confirm(
+        "Are you sure you want to delete this employee?"
+    );
+
+    if (answer) {
+
+        let employees =
+            JSON.parse(localStorage.getItem("employees")) || [];
+
+        employees.splice(index, 1);
+
+        localStorage.setItem(
+            "employees",
+            JSON.stringify(employees)
+        );
+
+        displayEmployees();
+        updateDashboard();   // ← add this
+    }
+}

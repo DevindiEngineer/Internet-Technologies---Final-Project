@@ -92,8 +92,7 @@
                         <option value="">Select Type</option>
                         <option value="Trainee/Intern">Trainee/Intern</option>
                         <option value="Contract">Contract</option>
-                        <option value="Part-Time">Part-Time</option>
-                        <option value="Full-Time">Full-Time</option>
+                        <option value="Permanent">Permanent</option>
                     </select>
                 </div>
 
@@ -118,6 +117,40 @@
 
     <h2>Employee Details</h2>
 
+    <div class="dashboard">
+
+        <div class="card">
+            <h3 id="totalEmployees">0</h3>
+            <p>Total Employees</p>
+        </div>
+
+        <div class="card">
+            <h3 id="totalDepartments">0</h3>
+            <p>Total Departments</p>
+        </div>
+
+        <div class="card">
+            <h3 id="permanentEmployees">0</h3>
+            <p>Permanent Employees</p>
+        </div>
+
+        <div class="card">
+            <h3 id="contractEmployees">0</h3>
+            <p>Contract Employees</p>
+        </div>
+
+        <div class="card">
+            <h3 id="traineeEmployees">0</h3>
+            <p>Trainees / Interns</p>
+        </div>
+
+        <div class="card">
+            <h3 id="averageSalary">0</h3>
+            <p>Average Salary</p>
+        </div>
+
+    </div>
+
     <div class="table-container">
         <table border="2" width="100%" style="color: rgb(9, 9, 75); background-color: rgb(207, 223, 238);">
             <thead>
@@ -129,7 +162,7 @@
                     <th>Department</th>
                     <th>Designation</th>
                     <th>Type</th>
-                    <th>Salary</th>
+                    <th>Salary (Rs.)</th>
                     <th>Actions</th>
                 </tr>
             </thead>
