@@ -234,29 +234,24 @@ tbody tr:hover {
     border-radius: 6px;
 }
 
-tbody tr.eng-row,
-tbody tr.eng-row:nth-child(even) {
-    background-color: #b8abe9;
+.department-cell.eng-row{
+    background-color:#b8abe9;
 }
 
-tbody tr.sales-row,
-tbody tr.sales-row:nth-child(even) {
-    background-color: #94df9a;
+.department-cell.sales-row{
+    background-color:#94df9a;
 }
 
-tbody tr.finance-row,
-tbody tr.finance-row:nth-child(even) {
-    background-color: #e0c859;
+.department-cell.finance-row{
+    background-color:#e0c859;
 }
 
-tbody tr.hr-row,
-tbody tr.hr-row:nth-child(even) {
-    background-color: #ebb5d9;
+.department-cell.hr-row{
+    background-color:#ebb5d9;
 }
 
-tbody tr.legal-row,
-tbody tr.legal-row:nth-child(even) {
-    background-color: #ec8484;
+.department-cell.legal-row{
+    background-color:#ec8484;
 }
 
 /* ---------- Dashboard cards ---------- */
