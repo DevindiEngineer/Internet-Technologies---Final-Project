@@ -234,25 +234,26 @@ tbody tr:hover {
     border-radius: 6px;
 }
 
-.department-cell.eng-row{
-    background-color:#b8abe9;
+td.department-cell.eng-row{
+    background-color:#b8abe9 !important;
 }
 
-.department-cell.sales-row{
-    background-color:#94df9a;
+td.department-cell.sales-row{
+    background-color:#94df9a !important;
 }
 
-.department-cell.finance-row{
-    background-color:#e0c859;
+td.department-cell.finance-row{
+    background-color:#e0c859 !important;
 }
 
-.department-cell.hr-row{
-    background-color:#ebb5d9;
+td.department-cell.hr-row{
+    background-color:#ebb5d9 !important;
 }
 
-.department-cell.legal-row{
-    background-color:#ec8484;
+td.department-cell.legal-row{
+    background-color:#ec8484 !important;
 }
+
 
 /* ---------- Dashboard cards ---------- */
 .dashboard {
