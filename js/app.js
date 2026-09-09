@@ -250,7 +250,7 @@ function displayEmployees(employeesToDisplay = null) {
         }
 
         tableBody.innerHTML += `
-            <tr>
+            <tr class="${rowClass}">
                 <td>${emp.empName}</td>
 
                 <td>
